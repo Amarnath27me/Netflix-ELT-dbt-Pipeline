@@ -52,7 +52,7 @@ Source: GroupLens Research — [More details](http://grouplens.org/datasets/)
 
 Below is the high-level architecture for this ELT workflow:
 
-![Architecture Diagram]("D:\netflix.drawio.png")
+![Architecture Diagram](https://github.com/Amarnath27me/Netflix-ELT-dbt-Pipeline/blob/fd226de60eaea0568507473e5ba970ac0fe6a18a/netflix.drawio.png)
 
 **Workflow Steps:**
 
