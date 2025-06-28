@@ -1,0 +1,72 @@
+models:
+  - name: dim_movies
+    description: Dimension table for cleanased movie metadata
+    columns:
+      - name: movie_id
+        description: Primary key of the movie
+        test:
+          - not_null
+      - name: movie_title
+        description: Standardized movie_title
+        test:
+          - not_null
+      - name: genre_array
+        description: List of genres in array format
+      - name: genres
+        description: Raw genre string from sources
+
+  - name: dim_users
+    description: Dimension table of unique usersfrom both rating and tags
+    columns:
+      - name: user_id
+        description: unique user identifier
+        test:
+          # - unique
+          - not_null
+
+  - name: dim_genome_tags
+    description: Dimension table for genome tag labels
+    columns:
+      - name: tag_id
+        description: unique tag id
+        test:
+          # - unique
+          - not_null
+
+  - name: fct_ratings
+    description: fact table of user ratings for movies
+    columns:
+      - name: user_id
+        description: Foriegn key to dim_users
+        test:
+          - not_null
+      - name: movie_id
+        description: Foriegn key to dim_movies
+        test:
+          - not_null
+          - relationships:
+            to: ref('dim_movies')
+            field: movie_id
+      - name: rating
+        description: users ratings for a movie
+        tests:
+          - not_null
+      - name: rating_timestamp
+        description: unix timestamp when the rating was made
+
+  - name: fct_genome_scores
+    description: fact table for relevance scores per movie and tag
+    columns:
+      - name: movie_id
+        description: Foriegn key to dim_movies
+        test:
+          - not_null
+      - name: tag_id
+        description: Foriegn key to dim_genome_tags
+        test:
+          - not_null
+      - name: relevance_score
+        description: Relevance score (0 to 1) for tag's association with movies
+        tests:
+          - not_null
+      
