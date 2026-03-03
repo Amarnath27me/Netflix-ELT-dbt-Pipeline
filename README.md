@@ -70,7 +70,7 @@ Below is the high-level architecture for this ELT workflow:
 
 ---
 
-## 🚀 How to Use
+## 🚀 Netflix-ELT-dbt-Pipeline
 
 1. Clone this repository:  
    ```bash
